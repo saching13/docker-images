@@ -1,0 +1,21 @@
+FROM ros:noetic-ros-base-focal
+
+# install ros packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-noetic-desktop-full=1.5.0-1* 
+
+RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common libusb-1.0-0-dev \
+    zsh  wget curl git && rm -rf /var/lib/apt/lists/*
+
+ENV DEBIAN_FRONTEND=dialog
+RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+RUN echo $HOME
+COPY ./.zsh_history /root/.zsh_history
+COPY ./.zshrc /root/.zshrc
+
+RUN echo 'source /opt/ros/$ROS_DISTRO/setup.zsh' >> $HOME/.zshrc
+# RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> $HOME/.zshrc
+# RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> $HOME/.zshrc
+# ENTRYPOINT [ "/ws/src/depthai_ros/entrypoint.sh" ]
+CMD ["zsh"]
