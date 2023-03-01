@@ -29,15 +29,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
 
-      - name: Get Version
-        if: startsWith(github.ref, 'refs/tags/v')
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+      # - name: Get Version
+      #   if: startsWith(github.ref, 'refs/tags/v')
+      #   id: vars
+      #   run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: Build and push (release)
         run: |
           docker buildx build \
-            --platform linux/amd64, linux/arm64 \
+            --platform linux/amd64,linux/arm64 \
             --tag saching12/ubuntu-images:galactic-dev \
             -f Dockerfile_galactic \
             --output "type=image,push=true" .
