@@ -2,7 +2,7 @@ FROM ros:noetic-ros-base-focal
 
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-noetic-desktop-full=1.5.0-1* 
+    ros-noetic-desktop-full
 
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common libusb-1.0-0-dev \
     zsh  wget curl git && rm -rf /var/lib/apt/lists/*
