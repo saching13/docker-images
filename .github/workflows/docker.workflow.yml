@@ -34,7 +34,7 @@ jobs:
       #   id: vars
       #   run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: Build and push (release)
+      - name: Build and push (galactic)
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
@@ -42,17 +42,26 @@ jobs:
             -f Dockerfile_galactic \
             --output "type=image,push=true" .
 
+      - name: Build and push (humble)
+        run: |
+
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --tag saching12/ubuntu-images:humble-dev \
             -f Dockerfile_humble \
             --output "type=image,push=true" .
 
+      - name: Build and push (noetic)
+        run: |
+
           docker buildx build \
             --platform linux/amd64,linux/arm/v7,linux/arm64 \
             --tag saching12/ubuntu-images:noetic-dev \
             -f Dockerfile_noetic \
             --output "type=image,push=true" .
+
+      - name: Build and push (kimera)
+        run: |
 
           docker buildx build \
             --platform linux/amd64,linux/arm/v7,linux/arm64 \
