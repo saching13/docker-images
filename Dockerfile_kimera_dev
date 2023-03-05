@@ -124,7 +124,7 @@ RUN cmake --build depthai-core/build --target install --parallel 4
 # RUN cd Kimera-VIO && mkdir build && cd build && cmake .. && make -j1
 # RUN apt-get update && apt-get install -y wget
 
-RUN mkdir Kimera-VIO
-COPY ./ $DIRPATH/Kimera-VIO
-RUN cd Kimera-VIO && mkdir build && cd build && cmake .. && make -j1
+# RUN mkdir Kimera-VIO
+# COPY ./ $DIRPATH/Kimera-VIO
+# RUN cd Kimera-VIO && mkdir build && cd build && cmake .. && make -j1
 CMD cd /
