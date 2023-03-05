@@ -37,7 +37,7 @@ jobs:
         run: |
 
           docker buildx build \
-            --platform linux/amd64,linux/arm/v7,linux/arm64 \
+            --platform linux/amd64,linux/arm64 \
             --tag saching12/ubuntu-images:noetic-dev \
             -f Dockerfile_noetic \
             --output "type=image,push=true" .
@@ -63,7 +63,7 @@ jobs:
         run: |
 
           docker buildx build \
-            --platform linux/amd64,linux/arm/v7,linux/arm64 \
+            --platform linux/amd64,linux/arm64 \
             --tag saching12/ubuntu-images:kimera-dev \
             -f Dockerfile_kimera_dev \
             --output "type=image,push=true" .
