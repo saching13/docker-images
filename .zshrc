@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-export PATH="$PATH:/home/sags/.local/bin"
+export PATH="$PATH:/home/.local/bin"
 eval "$(thefuck --alias)"
 
 plugins=(git z zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd zsh-navigation-tools web-search thefuck)

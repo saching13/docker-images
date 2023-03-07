@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-galactic-desktop=0.9.3-2*
 
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common libusb-1.0-0-dev \
-    zsh python3-colcon-common-extensions wget curl \
+    zsh python3-colcon-common-extensions wget curl git fzf vim python3-dev python3-pip\
     && rm -rf /var/lib/apt/lists/*
 
 ENV DEBIAN_FRONTEND=dialog
@@ -15,7 +15,14 @@ RUN echo $HOME
 COPY ./.zsh_history /root/.zsh_history
 COPY ./.zshrc /root/.zshrc
 
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+RUN python3 -m pip install thefuck
+
 RUN echo 'source /opt/ros/$ROS_DISTRO/setup.zsh' >> $HOME/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> $HOME/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> $HOME/.zshrc
+
+WORKDIR /home
+
 CMD ["zsh"]
