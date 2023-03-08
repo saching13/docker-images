@@ -142,10 +142,10 @@ RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> $HOME/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> $HOME/.zshrc
 RUN echo 'source /opt/ros/$ROS_DISTRO/setup.zsh' >> $HOME/.zshrc
 
-RUN mkdir Kimera-VIO
-COPY ./ $DIRPATH/Kimera-VIO
-RUN cd Kimera-VIO && mkdir build && cd build && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash &&\ 
-                    cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/${ROS_DISTRO} .. && make -j4 "
+# RUN mkdir Kimera-VIO
+# COPY ./ $DIRPATH/Kimera-VIO
+# RUN cd Kimera-VIO && mkdir build && cd build && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash &&\ 
+#                     cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/${ROS_DISTRO} .. && make -j4 "
 
 
 WORKDIR /home
